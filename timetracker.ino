@@ -93,6 +93,7 @@ void loop() {
   btns[1] = digitalRead(UP);
   btns[2] = digitalRead(DOWN);
   btns[3] = digitalRead(OKAY);  
+//  btns[3] = !btns[3];
   bool action = false;
   
   for (int i = 0; i < 4; i++) {
@@ -114,7 +115,11 @@ void loop() {
       case 0: readback(1);
        draw_clock();
        break; //clock
-      case 1: break; readback(2); break; //select
+      case 1: 
+        draw_arrow_down();
+        draw_arrow_up();
+        display.display();
+        break; readback(2); break; //select
       case 2: break; readback(3); break; //track
       case 3: draw_cancel(); readback(4); break; //cancel
     }
@@ -155,8 +160,33 @@ void draw_ok() {
 }
 
 
+void draw_arrow_up() {
+  display.drawPixel(display.width()-10, 22, SSD1306_WHITE);
+  display.drawLine(display.width()-11, 23, display.width()-9, 23, SSD1306_WHITE);
+  display.drawLine(display.width()-12, 24, display.width()-8, 24, SSD1306_WHITE);
+  display.drawLine(display.width()-13, 25, display.width()-11, 25, SSD1306_WHITE);
+  display.drawLine(display.width()-9, 25, display.width()-7, 25, SSD1306_WHITE);
+  display.drawLine(display.width()-14, 26, display.width()-12, 26, SSD1306_WHITE);
+  display.drawLine(display.width()-8, 26, display.width()-6, 26, SSD1306_WHITE);
+  display.drawLine(display.width()-15, 27, display.width()-13, 27, SSD1306_WHITE);
+  display.drawLine(display.width()-7, 27, display.width()-5, 27, SSD1306_WHITE);
+  display.drawLine(display.width()-16, 28, display.width()-14, 28, SSD1306_WHITE);
+  display.drawLine(display.width()-6, 28, display.width()-4, 28, SSD1306_WHITE);
+}
 
-
+void draw_arrow_down() {
+  display.drawLine(display.width()-6, 36, display.width()-4, 36, SSD1306_WHITE);
+  display.drawLine(display.width()-16, 36, display.width()-14, 36, SSD1306_WHITE);
+  display.drawLine(display.width()-7, 37, display.width()-5, 37, SSD1306_WHITE);
+  display.drawLine(display.width()-15, 37, display.width()-13, 37, SSD1306_WHITE);
+  display.drawLine(display.width()-8, 38, display.width()-6, 38, SSD1306_WHITE);
+  display.drawLine(display.width()-14, 38, display.width()-12, 38, SSD1306_WHITE);
+  display.drawLine(display.width()-9, 39, display.width()-7, 39, SSD1306_WHITE);
+  display.drawLine(display.width()-13, 39, display.width()-11, 39, SSD1306_WHITE);
+  display.drawLine(display.width()-12, 40, display.width()-8, 40, SSD1306_WHITE);
+  display.drawLine(display.width()-11, 41, display.width()-9, 41, SSD1306_WHITE);
+  display.drawPixel(display.width()-10, 42, SSD1306_WHITE);
+}
 
 
 

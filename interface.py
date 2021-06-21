@@ -3,7 +3,7 @@ import time
 from datetime import datetime as dt
 
 
-ser = serial.Serial("COM5", 115200, timeout=0)
+ser = serial.Serial("COM6", 115200, timeout=0)
 
 modes = ['clock', 'select', 'track', 'cancel']
 actions = ['UP', 'DOWN', 'ESC', 'OKAY']
@@ -57,4 +57,4 @@ while True:
         elif s == "mode":
             ser.write('{}\r\n'.format(modes.index(mode)).encode())
     else:
-        time.sleep(0.1)
+        time.sleep(0.01)
